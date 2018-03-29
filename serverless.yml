@@ -94,6 +94,7 @@ resources:
   Resources:
     RyangcaDistribution:
        Type: AWS::CloudFront::Distribution
+       DependsOn: RyangcaS3Bucket
        Properties:
          DistributionConfig:
            Origins:
@@ -145,9 +146,8 @@ resources:
               Action: 's3:GetObject'
               Resource:
                 Join:
-                  - ''
-                  - - 'arn:aws:s3:::'
-                    - Ref: RyangcaS3Bucket
-                    - /*
+                  - 'arn:aws:s3:::'
+                  - Ref: RyangcaS3Bucket
+                  - '/*'
         Bucket:
           Ref: RyangcaS3Bucket

@@ -10,7 +10,7 @@ phases:
     commands:
       - make
       - serverless deploy --stage dev --region us-east-1 --verbose
-      - aws s3 cp site/public/output s3://ryangca/
+      - aws s3 cp site/public/output s3://ryangca/ --recursive
   post_build:
     commands:
       #- . ./test.sh
