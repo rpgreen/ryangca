@@ -102,6 +102,7 @@ resources:
              S3OriginConfig:
                OriginAccessIdentity: ''
            Enabled: 'true'
+           PriceClass: PriceClass_100
            DefaultRootObject: index.html
            DefaultCacheBehavior:
              AllowedMethods:
@@ -120,7 +121,9 @@ resources:
              ViewerProtocolPolicy: allow-all
            ViewerCertificate:
              CloudFrontDefaultCertificate: 'true'
-
+#           ViewerCertificate:
+#              AcmCertificateArn: !Ref AcmCertificateArn
+#              SslSupportMethod: sni-only
     RyangcaS3Bucket:
       Type: 'AWS::S3::Bucket'
       Properties:
