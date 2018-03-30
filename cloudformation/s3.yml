@@ -11,20 +11,23 @@ Resources:
         ErrorDocument: error.html
     DeletionPolicy: Retain
 
-  RyangcaBucketPolicy:
-    Type: 'AWS::S3::BucketPolicy'
-    Properties:
-      PolicyDocument:
-        Id: RyangcaS3BucketPolicy
-        Statement:
-          - Sid: PublicReadForGetBucketObjects
-            Effect: Allow
-            Principal: '*'
-            Action: 's3:GetObject'
-            Resource:
-              Join:
-                - 'arn:aws:s3:::'
-                - Ref: RyangcaS3Bucket
-                - '/*'
-      Bucket:
-        Ref: RyangcaS3Bucket
+    RyangcaBucketPolicy:
+      Type: 'AWS::S3::BucketPolicy'
+      Properties:
+        Bucket:
+          Ref: RyangcaS3Bucket
+        PolicyDocument:
+          Id: RyangcaS3BucketPolicy
+          Statement:
+            - Sid: PublicReadForGetBucketObjects
+              Effect: Allow
+              Principal: '*'
+              Action: 's3:GetObject'
+              Resource:
+                Fn::Join:
+                  - ""
+                  -
+                    - "arn:aws:s3:::"
+                    -
+                      Ref: RyangcaS3Bucket
+                    - "/*"
