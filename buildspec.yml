@@ -6,11 +6,18 @@ phases:
       - curl -sL https://deb.nodesource.com/setup_9.x | bash -
       - sudo apt-get install -y nodejs
       - npm install -g serverless
+      - go get -u github.com/golang/lint/golint
+  pre_build:
+    commands:
+      - golint -set_exit_status functions/...
   build:
     commands:
       - make
-      - serverless deploy --stage dev --region us-east-1 --verbose
-      - aws s3 cp site/public/output s3://ryangca/ --recursive
+      - go test ./...
   post_build:
     commands:
-      #- . ./test.sh
+      - serverless deploy --stage dev --region us-east-1 --verbose
+      - aws s3 cp site/public/output s3://ryangca/ --recursive
+  artifacts:
+    files:
+      - *

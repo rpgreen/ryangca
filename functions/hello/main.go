@@ -4,10 +4,12 @@ import (
 	"github.com/aws/aws-lambda-go/lambda"
 )
 
+//Response todo
 type Response struct {
 	Message string `json:"message"`
 }
 
+//Handler todo
 func Handler() (Response, error) {
 	return Response{
 		Message: "Go Serverless v1.0! Your function executed successfully!",
