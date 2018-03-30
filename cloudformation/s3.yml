@@ -19,9 +19,9 @@ Resources:
       PolicyDocument:
         Id: RyangcaS3BucketPolicy
         Statement:
-          - Sid: PublicReadForGetBucketObjects
+          - Sid: CloudFrontGetObject
             Effect: Allow
-            Principal: '*'
+            Principal: ${env:OAIID}
             Action: 's3:GetObject'
             Resource:
               Fn::Join:

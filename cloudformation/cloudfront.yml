@@ -10,7 +10,7 @@ Resources:
          - DomainName: ryangca.s3.amazonaws.com
            Id: myS3Origin
            S3OriginConfig:
-             OriginAccessIdentity: ''
+             OriginAccessIdentity: ${env:OAI}
          Enabled: 'true'
          PriceClass: PriceClass_100
          DefaultRootObject: index.html
