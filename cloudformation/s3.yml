@@ -21,7 +21,8 @@ Resources:
         Statement:
           - Sid: CloudFrontGetObject
             Effect: Allow
-            Principal: ${env:OAIID}
+#            Principal: '${env:OAIID}'
+            Principal: '*'
             Action: 's3:GetObject'
             Resource:
               Fn::Join:
