@@ -14,6 +14,17 @@ Resources:
          Enabled: 'true'
          PriceClass: PriceClass_100
          DefaultRootObject: index.html
+         Aliases:
+          - ryangreen.ca
+          - ryang.ca
+         ViewerCertificate:
+          AcmCertificateArn: ${env:ACM_CERT_ARN}
+          SslSupportMethod: sni-only
+         CustomErrorResponses:
+           - ErrorCode: '404'
+             ResponsePagePath: "/404.html"
+             ResponseCode: '200'
+             ErrorCachingMinTTL: '30'
          DefaultCacheBehavior:
            AllowedMethods:
            - DELETE
@@ -28,9 +39,4 @@ Resources:
              QueryString: 'false'
              Cookies:
                Forward: none
-           ViewerProtocolPolicy: allow-all
-         ViewerCertificate:
-           CloudFrontDefaultCertificate: 'true'
-  #           ViewerCertificate:
-  #              AcmCertificateArn: !Ref AcmCertificateArn
-  #              SslSupportMethod: sni-only
+           ViewerProtocolPolicy: redirect-to-https
