@@ -20,4 +20,5 @@ phases:
       - aws s3 cp site/public/output s3://ryangca/ --recursive
   artifacts:
     files:
-      - *
+      - bin/*
+      - .serverless/*
