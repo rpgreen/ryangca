@@ -1,0 +1,30 @@
+---
+Resources:
+
+  RyangcaS3Bucket:
+    Type: 'AWS::S3::Bucket'
+    Properties:
+      BucketName: ryangca
+      AccessControl: PublicRead
+      WebsiteConfiguration:
+        IndexDocument: index.html
+        ErrorDocument: error.html
+    DeletionPolicy: Retain
+
+  RyangcaBucketPolicy:
+    Type: 'AWS::S3::BucketPolicy'
+    Properties:
+      PolicyDocument:
+        Id: RyangcaS3BucketPolicy
+        Statement:
+          - Sid: PublicReadForGetBucketObjects
+            Effect: Allow
+            Principal: '*'
+            Action: 's3:GetObject'
+            Resource:
+              Join:
+                - 'arn:aws:s3:::'
+                - Ref: RyangcaS3Bucket
+                - '/*'
+      Bucket:
+        Ref: RyangcaS3Bucket

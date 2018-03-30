@@ -51,8 +51,8 @@ package:
    - ./bin/**
 
 functions:
-#  hello:
-#    handler: bin/hello
+  hello:
+    handler: bin/hello
 #  world:
 #    handler: bin/world
 
@@ -91,63 +91,5 @@ functions:
 #      variable2: value2
 
 resources:
-  Resources:
-    RyangcaDistribution:
-       Type: AWS::CloudFront::Distribution
-       DependsOn: RyangcaS3Bucket
-       Properties:
-         DistributionConfig:
-           Origins:
-           - DomainName: ryangca.s3.amazonaws.com
-             Id: myS3Origin
-             S3OriginConfig:
-               OriginAccessIdentity: ''
-           Enabled: 'true'
-           PriceClass: PriceClass_100
-           DefaultRootObject: index.html
-           DefaultCacheBehavior:
-             AllowedMethods:
-             - DELETE
-             - GET
-             - HEAD
-             - OPTIONS
-             - PATCH
-             - POST
-             - PUT
-             TargetOriginId: myS3Origin
-             ForwardedValues:
-               QueryString: 'false'
-               Cookies:
-                 Forward: none
-             ViewerProtocolPolicy: allow-all
-           ViewerCertificate:
-             CloudFrontDefaultCertificate: 'true'
-#           ViewerCertificate:
-#              AcmCertificateArn: !Ref AcmCertificateArn
-#              SslSupportMethod: sni-only
-    RyangcaS3Bucket:
-      Type: 'AWS::S3::Bucket'
-      Properties:
-        BucketName: ryangca
-        AccessControl: PublicRead
-        WebsiteConfiguration:
-          IndexDocument: index.html
-          ErrorDocument: error.html
-      DeletionPolicy: Retain
-    RyangcaBucketPolicy:
-      Type: 'AWS::S3::BucketPolicy'
-      Properties:
-        PolicyDocument:
-          Id: RyangcaS3BucketPolicy
-          Statement:
-            - Sid: PublicReadForGetBucketObjects
-              Effect: Allow
-              Principal: '*'
-              Action: 's3:GetObject'
-              Resource:
-                Join:
-                  - 'arn:aws:s3:::'
-                  - Ref: RyangcaS3Bucket
-                  - '/*'
-        Bucket:
-          Ref: RyangcaS3Bucket
+  - ${file(cloudformation/s3.yml)}
+  - ${file(cloudformation/cloudfront.yml)}

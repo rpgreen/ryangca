@@ -1,0 +1,35 @@
+---
+Resources:
+  RyangcaDistribution:
+     Type: AWS::CloudFront::Distribution
+     DependsOn: RyangcaS3Bucket
+     Properties:
+       DistributionConfig:
+         Origins:
+         - DomainName: ryangca.s3.amazonaws.com
+           Id: myS3Origin
+           S3OriginConfig:
+             OriginAccessIdentity: ''
+         Enabled: 'true'
+         PriceClass: PriceClass_100
+         DefaultRootObject: index.html
+         DefaultCacheBehavior:
+           AllowedMethods:
+           - DELETE
+           - GET
+           - HEAD
+           - OPTIONS
+           - PATCH
+           - POST
+           - PUT
+           TargetOriginId: myS3Origin
+           ForwardedValues:
+             QueryString: 'false'
+             Cookies:
+               Forward: none
+           ViewerProtocolPolicy: allow-all
+         ViewerCertificate:
+           CloudFrontDefaultCertificate: 'true'
+  #           ViewerCertificate:
+  #              AcmCertificateArn: !Ref AcmCertificateArn
+  #              SslSupportMethod: sni-only
