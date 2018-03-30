@@ -1,5 +1,6 @@
 ---
 Resources:
+
   RyangcaDistribution:
      Type: AWS::CloudFront::Distribution
      DependsOn: RyangcaS3Bucket
