@@ -1,0 +1,16 @@
+a {
+    color: #606c76;
+}
+a:hover {
+    color: white;
+}
+.container {
+    padding-top: 20px;
+}
+h4 {
+    text-decoration: underline;
+}
+h4:hover {
+    background-color: black;
+    color: white;
+}
