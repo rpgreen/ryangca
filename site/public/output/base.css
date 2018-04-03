@@ -1,16 +1,30 @@
+html { font-size: 2vw; }
+
 a {
     color: #606c76;
 }
+
 a:hover {
     color: white;
 }
+
 .container {
     padding-top: 20px;
 }
+
 h4 {
     text-decoration: underline;
+    /*font-size:8vw;*/
+    font-size: 1.5rem;
 }
+
 h4:hover {
     background-color: black;
     color: white;
+}
+
+@media (max-width: 50.0rem) {
+    h4 {
+        font-size: 5rem;
+    }
 }
