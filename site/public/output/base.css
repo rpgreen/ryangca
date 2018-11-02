@@ -5,7 +5,7 @@ a {
 }
 
 a:hover {
-    color: white;
+    color: black;
 }
 
 .container {
@@ -20,8 +20,6 @@ h4 {
 }
 
 h4:hover {
-    background-color: black;
-    color: white;
 }
 
 small {
