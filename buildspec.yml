@@ -6,14 +6,14 @@ phases:
       - curl -sL https://deb.nodesource.com/setup_9.x | bash -
       - sudo apt-get install -y nodejs
       - npm install -g serverless
-      - go get -u github.com/golang/lint/golint
+      #- go get -u github.com/golang/lint/golint
   pre_build:
     commands:
-      - golint -set_exit_status functions/...
+      #- golint -set_exit_status functions/...
   build:
     commands:
       - make
-      - go test ./...
+      #- go test ./...
   post_build:
     commands:
       - serverless deploy --stage dev --region us-east-1 --verbose
