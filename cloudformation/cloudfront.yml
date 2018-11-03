@@ -9,8 +9,8 @@ Resources:
          Origins:
          - DomainName: https://ryangca.s3-website-us-east-1.amazonaws.com
            Id: myS3Origin
-           S3OriginConfig:
-             OriginAccessIdentity: ${env:OAI}
+           CustomOriginConfig:
+             OriginProtocolPolicy: https-only
          Enabled: 'true'
          PriceClass: PriceClass_100
          DefaultRootObject: index.html
