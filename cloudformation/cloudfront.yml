@@ -7,7 +7,7 @@ Resources:
      Properties:
        DistributionConfig:
          Origins:
-         - DomainName: https://ryangca.s3-website-us-east-1.amazonaws.com
+         - DomainName: ryangca.s3-website-us-east-1.amazonaws.com
            Id: myS3Origin
            CustomOriginConfig:
              OriginProtocolPolicy: https-only
