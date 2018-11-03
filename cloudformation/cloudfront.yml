@@ -10,7 +10,7 @@ Resources:
          - DomainName: ryangca.s3-website-us-east-1.amazonaws.com
            Id: myS3Origin
            CustomOriginConfig:
-             OriginProtocolPolicy: https-only
+             OriginProtocolPolicy: http-only
          Enabled: 'true'
          PriceClass: PriceClass_100
          DefaultRootObject: index.html
